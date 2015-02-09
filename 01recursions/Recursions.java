@@ -1,4 +1,4 @@
-public class Recursions{
+public class Recursions implements hw1{
 
     public String name(){
 	return "Li,Vivian";
@@ -24,26 +24,32 @@ public class Recursions{
 	if(n == 1){
 	    return 1;
 	}
-	else{
-	    return fib(n - 1) + fib(n - 2);
-	}
+	return fib(n - 1) + fib(n - 2);	
     }
 
     public double sqrt(double n){
         if(n < 0){
 	    throw new IllegalArgumentException();
 	}
-	else{
-	    return tailSqrt(n, 1);
-	}
+	return tailSqrt(n, n/2);
     }
 
     public double tailSqrt(double n, double guess){
-	if((Math.pow(((n / guess + guess) / 2), 2)) / n > 1.00000001){
+	if((Math.pow(((n / guess + guess) / 2), 2)) / n > 1.0000000001){
 	    return tailSqrt(n, (n / guess + guess) / 2);
 	}
-	else{
-	    return guess;
-	}
+        return guess;	
     }
+
+    /*
+    public static void main(String[] args){
+	Recursions goat = new Recursions();
+	System.out.println(goat.fib(10));
+	System.out.println(goat.sqrt(25.0));
+	System.out.println(goat.sqrt(0.0));
+	//System.out.println(goat.fib(10));
+
+    }
+    */   
 }
+
