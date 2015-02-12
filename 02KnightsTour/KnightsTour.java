@@ -12,7 +12,6 @@ public class KnightsTour{
     //instance variable
     private int[][]board;
 
-
     //terminal specific character to move the cursor
     private String go(int x,int y){
 	return ("\033[" + x + ";" + y + "H");
@@ -30,11 +29,22 @@ public class KnightsTour{
     public String toString(){
 	String ans = "\n";
 	//build your knights tour here...
+	for(int i = 0; i < board.length; i++){
+	    for(int j = 0; j < board[0].length; j++){
+		int keep = board[i][j];
+	    }
+	}
+
 	return hide + go(0,0) + ans + "\n" + show;
     }
 
     public KnightsTour(int size){
-				
+	board = new int[size][size];
+	for(int i = 0; i < board.length; i++){
+	    for(int j = 0; j < board[0].length; j++){
+		board[i][j] = 0;
+	    }
+	}
     }
 
     
@@ -45,15 +55,18 @@ public class KnightsTour{
 
 
     public void solve(int startx, int starty){
-				
+	
     }
-
-
 
 		
     public boolean solve(int x,int y,int currentMoveNumber){
 	System.out.println(this);
 	wait(20);
+
+	if(board[x][y] == 0){
+	    board[x][y] = currentMoveNumber;
+	}
+
 				
 	return false;
     }
