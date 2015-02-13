@@ -62,29 +62,29 @@ public class KnightsTour{
 
 
     public boolean solve(int startx, int starty){
-	return solve(startx, starty, 0);
+	return solve(startx, starty, 1);
     }
 
     //c = currentMoveNumber		
     public boolean solve(int x,int y,int c){
 	//System.out.println(this);
-	//wait(20);
-
+	//wait(1);
+	//if out of bounds
 	if(x < 0 || y < 0 || x >= board.length || y >= board[0].length){
 	    return false;
 	}
-
-	if(c == board.length * board[0].length + 1){
+	//if finished 
+	if(c == board.length * board[0].length){
 	    return true;
 	}
 
 	if(board[x][y] == 0){
 	    board[x][y] = c;
 
-	    if(solve(x+1, y+2, c+1) || solve(x+1, y-2, c+1) ||
-	       solve(x+2, y+1, c+1) || solve(x+2, y-1, c+1) ||
-	       solve(x-1, y+2, c+1) || solve(x-1, y-2, c+1) ||
-	       solve(x-2, y+1, c+1) || solve(x-2, y-1, c+1)){
+	    if(solve(x+1, y+2, c+1) || solve(x-1, y+2, c+1) ||
+	       solve(x+2, y+1, c+1) || solve(x-2, y+1, c+1) ||
+	       solve(x+1, y-2, c+1) || solve(x-1, y-2, c+1) ||
+	       solve(x+2, y-1, c+1) || solve(x-2, y-1, c+1)){
 		return true;
 	    }
 	    board[x][y] = 0;

@@ -5,7 +5,9 @@ public class Driver{
 
     public static void main(String[] args){
     
-	KnightsTour test = new KnightsTour(5);
-	test.solve();
+	KnightsTour test1 = new KnightsTour(7);
+
+	System.out.println(test1.solve());
+
     }
 }
