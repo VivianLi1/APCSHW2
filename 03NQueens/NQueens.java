@@ -35,7 +35,7 @@ public class NQueens{
 	String ans = "\n";
 
 	for(int i = 0; i < board.length; i++){
-	    for(int j = 0; j < board[0].length; j++){
+	    for(int j = 0; j < board.length; j++){
 		ans += " " + board[i][j];
 	    }
 	    ans += "\n";
@@ -47,29 +47,26 @@ public class NQueens{
 	return "li.vivian";
     }
 
-    public boolean isOkay(int row, int col){
-	int i, j;
-	
-	for(i = 0; i < col; i++){
-	    if(board[row][i] == 'Q'){
+    public boolean isOkay(int x, int y){
+	int i,j;
+	for (i = 0; i < y; i++){
+	    if (board[x][i] == 'Q'){
 		return false;
 	    }
 	}
-
-	for(i = row, j = col; i >= 0 && j >= 0; i--, j--){
-	    if(board[i][j] == 'Q'){
+	for (i = x, j = y; (i >= 0) && (j >= 0); i--, j--){
+	    if (board[i][j] == 'Q'){
 		return false;
 	    }
 	}
-
-	for(i = row, j = col; i < board.length && j >= 0; i++, j++){
-	    if(board[i][j] == 'Q'){
+	for (i = x, j = y; (i < board.length) && (j >= 0); i++, j--){
+	    if (board[i][j] == 'Q'){
 		return false;
 	    }
 	}
 	return true;
     }
-    
+
     public boolean solve(){
 	return solve(0,0);
     }
@@ -79,6 +76,7 @@ public class NQueens{
     }
 
     public boolean solve(int x, int y){
+
 	if(y >= board.length){
 	    return true;
 	}
