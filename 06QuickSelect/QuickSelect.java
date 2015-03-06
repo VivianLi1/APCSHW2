@@ -6,22 +6,21 @@ public class QuickSelect{
     public void partition(int[] ary, int si, int ei){
 	int[] d = new int[ary.length];
 
-	int s = si;
-	int e = ei;
-	int pivot = ary[si];
+	int start = si;
+	int end = ei;
+	int pivot = ary[ei - si + 1];
 	
-	for(int i = si, i <= ei; i++){
+	for(int i = si; i <= ei; i++){
 	    if(ary[i] < pivot){
-		d[s] = ary[i];
-		s++;
-	    }
-	    if(ary[i] > pivot){
-		d[e] = ary[i];
-		e++;
+		d[start] = ary[i];
+		start++;
+	    }else if(ary[i] > pivot){
+		d[end] = ary[i];
+		end++;
 	    }
 	}
 
-	d[s] = pivot;
+	d[start] = pivot;
 	for(int i = si - 1; i >= 0l; i++){
 	    d[i] = ary[i];
 	}
