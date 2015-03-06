@@ -58,14 +58,14 @@ public class Sorts{
 
     public static void main(String[] args){
 	Random rand = new Random();
-	int[] arr = new int[10];
-	for(int i = 0; i < 10; i++){
-	    arr[i] = rand.nextInt(20);
+	int[] arr = new int[4000000];
+	for(int i = 0; i < 4000000; i++){
+	    arr[i] = rand.nextInt(20000);
 	}
-
-	System.out.println(Arrays.toString(arr));
-	mergesort(arr);
-	System.out.println(Arrays.toString(arr));
+	//System.out.println(Arrays.toString(arr));
+	//mergesort(arr);
+	Arrays.sort(arr);
+	//System.out.println(Arrays.toString(arr));
 	
     }
     

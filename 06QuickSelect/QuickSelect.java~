@@ -1,0 +1,25 @@
+import java.util.*;
+import java.io.*;
+
+public class QuickSelect{
+    
+    public void partition(int[] ary, int si, int ei){
+	int[] d = new int[ary.length];
+	d = Arrays.copyOfRange(ary, si, ei + 1);
+    }
+    
+
+    public static void main(String[] args){
+	int size = Integer.parseInt(args[0]);
+	int range = Integer.parseInt(args[1]);
+
+	Random rand = new Random();
+	int[] a = new int[size];
+	
+	for(int i = 0; i < a.length; i++){
+	    a[i] = rand.nextInt(range);
+	}
+	
+	System.out.println(Arrays.toString(a));
+    }
+}
