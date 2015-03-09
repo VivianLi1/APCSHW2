@@ -3,7 +3,7 @@ import java.io.*;
 
 public class QuickSelect{
     
-    public void partition(int[] ary, int si, int ei){
+    public static int partition(int[] ary, int si, int ei, int index){
 	int[] d = new int[ary.length];
 
 	int start = si;
@@ -19,13 +19,19 @@ public class QuickSelect{
 		end++;
 	    }
 	}
-
+	int keep;
 	d[start] = pivot;
-	for(int i = si - 1; i >= 0l; i++){
-	    d[i] = ary[i];
-	}
-	for(int j = ei + 1; j < ary.length; j++){
-	    d[j] = ary[j];
+	if(start == index){
+	    keep = d[start];
+	} else{
+	    System.arraycopy(d, 0, ary, 0, d.length);
+	    if(index < start){
+		keep = partition(ary, si, start -1, index);
+	    }
+	    else{
+		keep = partition(ary, start+1, ei, index);
+	    }
+	    
 	}
     }
 
