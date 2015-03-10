@@ -2,14 +2,16 @@ import java.util.*;
 import java.io.*;
 
 public class Sorts{
+
+    Random rand = new Random();
     
-    public static int quickSelect(int[] ary, int si, int ei, int index){
+    public static int partition(int[] ary, int si, int ei){
 	int[] d = new int[ary.length];
-	Random rand = new Random();
 	
 	int start = si;
 	int end = ei;
 	int pivot = ary[rand.nextInt(ei - si + 1) + si];
+	int keep;
 	
 	for(int i = si; i <= ei; i++){
 	    if(ary[i] < pivot){
@@ -17,27 +19,27 @@ public class Sorts{
 		start++;
 	    }else if(ary[i] > pivot){
 		d[end] = ary[i];
-		end++;
+		end--;
 	    }
-	}
-	int keep;
-	d[start] = pivot;
-	if(start == index){
 	    keep = d[start];
-	} else{
-	    System.arraycopy(d, 0, ary, 0, d.length);
-	    if(index < start){
-		keep = quickSelect(ary, si, start - 1, index);
-	    }
-	    else{
-		keep = quickSelect(ary, start + 1, ei, index);
-	    }
-	    
+	    d[start] = d[end];
+	    d[end] = keep;
+	    start++;
+	    end--;
 	}
 	return keep;
     }
 
     public static void quicksort(int[] arr){
+	int start = 0;
+	int end = a.length - 1;
+	int keep = partition(arr, start, end);
+	if(start < keep - 1){
+	    quicksort(arr, start, keep - 1);
+	}
+	if(keep < end){
+	    quicksort(arr, keep, end);
+	}
     }
 	
 
@@ -53,6 +55,6 @@ public class Sorts{
 	}
 	
 	System.out.println(Arrays.toString(a));
-	System.out.println(quickSelect(a, 0, 10, 2));
+	
     }
 }
