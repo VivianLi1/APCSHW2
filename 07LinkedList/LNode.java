@@ -3,6 +3,16 @@ public class LNode{
     private LNode next;
     private int value;
 
+    public LNode(int v){
+	next = null;
+	value = v;
+    }
+
+    public LNode(int v, LNode n);
+	next = n;
+	value = v;
+    }
+    
     public void setNext(LNode n){
 	next = n;
     }
