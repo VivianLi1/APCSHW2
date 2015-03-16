@@ -36,7 +36,7 @@ public class MyLinkedList{
 	size++;
     }
 
-    public void add(T value, int index){
+    public void add(<T> value, int index){
 	LNode temp = new LNode();
 	current = head;
 	if(!(outOfBounds(index))){
@@ -75,7 +75,7 @@ public class MyLinkedList{
 	}
     }
 
-    public void set(int index, T value){
+    public void set(int index,<T> value){
 	current = head;
 	if(!(outOfBounds(index))){
 	    while(index > 0){
