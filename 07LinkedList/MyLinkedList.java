@@ -2,6 +2,7 @@ public class MyLinkedList{
 
     LNode current;
     LNode head;
+    LNode tail;
     int size = 0;
 
     public MyLinkedList(){
@@ -21,32 +22,67 @@ public class MyLinkedList{
     }
 
     public int size(){
-	/*
-	int counter = 0;
-	while(current != null){
-	    counter++;
-	}
-	return counter;
-	*/
 	return size;
     }
     
     public void add(int value){
-	LNode temp = new LNode(value);
-	current = head;
-	while(current.getNext() != null){
-	    current = current.getNext();
-	}
-	current.setNext(temp);
+	add(size() - 1, value);
 	size++;
     }
 
     public void add(int value, int index){
+	LNode temp = new LNode;
+	current = head;
+	if(!(outOfBounds(index))){
+	    while(index > 0){
+		index--;
+		current = current.getNext();
+	    }
+	    temp.setValue(value);
+	    temp.setNext(current.getNext());
+	    current.setNext(temp);
+	    size++;
+	}
     }
 
     public void remove(int index){
+	current = head;
+	if(!(outOfBounds(index))){
+	    while(index > 1){
+		index--;
+		current = current.getNext();
+	    }
+	    //int temp = current.getNext().getValue();
+	    current.setNext(current.getNext().getNext());
+	    size--;
+	}   
     }
 
+    public int get(int index){
+	current = head;
+	if(!(outOfBounds(index))){
+	    while(index > 0){
+		index--;
+		current = current.getNext();
+	    }
+	    return current.getValue();
+	}
+    }
+
+    public void set(int index, int value){
+	current = head;
+	if(!(outofBounds(index))){
+	    while(index > 0){
+		index--;
+		current = current.getNext();
+	    }
+	    current.setValue(value);
+	}
+    }
+
+    private boolean outOfBounds(int index){
+	return (index < 0 || index > size());
+    }
     
     public static void main(String[] args){
 	MyLinkedList test = new MyLinkedList();
