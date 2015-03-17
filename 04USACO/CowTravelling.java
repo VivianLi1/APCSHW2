@@ -5,6 +5,13 @@ public class CowTravelling{
     private int r1, c1;
     
     public CowTravelling(int a, int b){
+	File file = new File("cowTravel");
+	Scanner scan = new Scanner(file);
+
+	while(scan.hasNextLine()){
+	    String str = scan.nextLine();
+
+	    if(line == 0){
 	field = new char[a][b];
     }
 

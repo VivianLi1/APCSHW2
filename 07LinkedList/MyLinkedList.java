@@ -1,11 +1,11 @@
 import java.util.*;
 import java.io.*;
 
-public class MyLinkedList{
+public class MyLinkedList<T>{
 
-    LNode current;
-    LNode head;
-    LNode tail;
+    LNode<T> current;
+    LNode<T> head;
+    LNode<T> tail;
     int size = 0;
 
     public String name(){
@@ -13,6 +13,8 @@ public class MyLinkedList{
     }
 
     public MyLinkedList(){
+	head = null;
+	tail = head;
     }
     
     public String toString(){
@@ -32,41 +34,76 @@ public class MyLinkedList{
     }
     
     public void add(T value){
-	add(size() - 1, value);
+	if(size == 0){
+	    head = new LNode<T>(value);
+	    tail = head;
+	    current = head;
+	}else{
+	    LNode<T> temp = new LNode<T>(value);
+	    tail.setNext(temp);
+	    tail = tail.getNext();
+	}
 	size++;
     }
 
-    public void add(T value, int index){
-	LNode temp = new LNode();
+    public void add(int index, T value){
+	T temp;
 	current = head;
-	if(!(outOfBounds(index))){
+	if(outOfBounds(index)){
+	    throw new IndexOutOfBoundsException();
+	}else{
 	    while(index > 0){
 		index--;
 		current = current.getNext();
 	    }
-	    temp.setValue(value);
-	    temp.setNext(current.getNext());
-	    current.setNext(temp);
+	    temp = current.getValue();
+	    current.setValue(value);
+	    current.setNext(new LNode<T>(temp, current.getNext()));
 	    size++;
 	}
     }
 
-    public void remove(int index){
+    public T remove(int index){
+	T keep = null;
 	current = head;
-	if(!(outOfBounds(index))){
+	if(outOfBounds(index)){
+	    throw new IndexOutOfBoundsException();
+	}
+	if(index == 0){
+	    keep = head.getValue();
+	    head = head.getNext();
+	}else{
 	    while(index > 1){
 		index--;
 		current = current.getNext();
 	    }
-	    //int temp = current.getNext().getValue();
+	    if(index == size - 1){
+		tail = current;
+	    }
+	    keep = current.getNext().getValue();
 	    current.setNext(current.getNext().getNext());
 	    size--;
-	}   
+	} 
+	return keep;  
     }
 
-    public int get(int index){
+    public int indexOf(T value){
+	int index = 0;
+	while(current.getNext() != null){
+	    if(current.getValue() == value){
+		return index;
+	    }
+	    current = current.getNext();
+	    index++;
+	}
+	return index;
+    }
+
+    public T get(int index){
 	current = head;
-	if(!(outOfBounds(index))){
+	if(outOfBounds(index)){
+	    throw new IndexOutOfBoundsException();
+	}else{
 	    while(index > 0){
 		index--;
 		current = current.getNext();
@@ -75,29 +112,37 @@ public class MyLinkedList{
 	}
     }
 
-    public void set(int index, T value){
+    public T set(int index, T value){
+	T keep = null;
 	current = head;
 	if(!(outOfBounds(index))){
 	    while(index > 0){
 		index--;
 		current = current.getNext();
 	    }
+	    keep = current.getValue();
+	    if(index == size - 1){
+		tail.setValue(value);
+	    }
 	    current.setValue(value);
 	}
+	return keep;
     }
 
     private boolean outOfBounds(int index){
-	return (index < 0 || index > size());
+	return (index < 0 || index >= size());
     }
-    
+    /*
     public static void main(String[] args){
 	MyLinkedList test = new MyLinkedList();
 	for(int i = 0; i < 10; i++){
 	    test.add(i);
-	}
-	System.out.println(test.toString());
-	System.out.println(test.size());
-    }
+	    }
+	    System.out.println(test.toString());
+	    System.out.println(test.size());
+	    }
+    */
 }
+
 
     
