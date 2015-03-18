@@ -3,6 +3,10 @@ public class LNode<T>{
     private LNode<T> next;
     private T value;
 
+    public String name(){
+	return "li.vivian";
+    }
+    
     public LNode(T v){
 	setValue(v);
 	setNext(null);

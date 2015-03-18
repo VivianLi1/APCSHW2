@@ -1,12 +1,10 @@
 import java.util.*;
 import java.io.*;
 
-public class MyLinkedList<T>{
+public class MyLinkedList<T> implements Iterable<T>{
 
-    LNode<T> current;
-    LNode<T> head;
-    LNode<T> tail;
-    int size = 0;
+    private LNode<T> current, head, tail, n;
+    private int size = 0;
 
     public String name(){
 	return "li.vivian";
@@ -132,6 +130,39 @@ public class MyLinkedList<T>{
     private boolean outOfBounds(int index){
 	return (index < 0 || index >= size());
     }
+
+    public class MLLIterator<T> implements Iterator<T>{
+	private LNode<T> current;
+	
+	public MLLIterator(LNode<T> n){
+	    current = n;
+	}
+	
+	public T next(){
+	    current = current.getNext();
+	    if(current.getValue() == null){
+		throw new NoSuchElementException();
+	    }
+	    return current.getValue();
+	}
+
+	public boolean hasNext(){
+	    boolean b = false;
+	    if(current.getNext() != null){
+		b = true;
+	    }
+	    return b;
+	}
+
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
+    }
+
+    public Iterator<T> iterator(){
+	return new MLLIterator<T>(n);
+    }
+    
     /*
     public static void main(String[] args){
 	MyLinkedList test = new MyLinkedList();
