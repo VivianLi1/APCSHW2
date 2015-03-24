@@ -2,17 +2,17 @@ import java.util.*;
 
 public class MyStack<T>{
 
-    private LinkedList<T> current = new LinkedList<T>();
+    private MyLinkedList<T> current = new MyLinkedList<T>();
 
     public boolean empty(){
-	return current.size() == 0;
+	return current == null;
     }
 
     public T peek(){
 	if(empty()){
 	    throw new EmptyStackException();
 	}else{
-	    return current.getFirst();
+	    return current.get(0);
 	}
     }
 
@@ -20,8 +20,8 @@ public class MyStack<T>{
 	if(empty()){
 	    throw new EmptyStackException();
 	}else{
-	    T temp = current.getFirst();
-	    current.remove();
+	    T temp = current.get(0);
+	    current.remove(0);
 	    return temp;
 	}
     }

@@ -163,7 +163,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 	return new MLLIterator<T>(n);
     }
     
-    
+    /*
     public static void main(String[] args){
 	MyLinkedList test = new MyLinkedList();
 	for(int i = 0; i < 10; i++){
@@ -172,6 +172,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 	    System.out.println(test.toString());
 	    System.out.println(test.size());
 	    }
+    */
     
 }
 
