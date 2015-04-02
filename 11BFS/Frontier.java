@@ -5,6 +5,17 @@ public class Frontier{
     public Frontier(){
     }
 
-    public 
+    public void add(Coordinate c){
+	deq.addFirst(c);
+    }
 
+    public void remove(){
+	deq.removeLast();
+    }
+    /*
+    public Coordinate get(){
+	return deq.getL
+    }
+
+    */
 }

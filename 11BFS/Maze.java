@@ -124,32 +124,6 @@ public class Maze{
 	return false;//by default the maze didn't get solved
     }
 
-    public class coordinate(){
-
-	private r, c;
-
-	public coordinate(int r, int c){
-	    setr(r);
-	    setc(c);
-	}
-
-	public void setr(int rr){
-	    r = rr;
-	}
-
-	public void setc(int cc){
-	    c = cc;
-	}
-
-	public int getr(){
-	    return r;
-	}
-
-	public int getc(){
-	    return c;
-	}
-    }
-
     public boolean solveBFS(boolean animate){
     }
 
