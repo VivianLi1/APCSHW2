@@ -105,8 +105,8 @@ public class Maze{
     }
 
     public boolean solve(int x,int y){
-	    System.out.println(this);
-	    wait(20);
+	System.out.println(this);
+	wait(20);
 	if(maze[x][y] == 'E'){
 	    return true;
 	}
@@ -115,7 +115,7 @@ public class Maze{
 	    maze[x][y] = '@';
 	    //recursion ho!!
 	    if( solve(x + 1, y) || solve( x, y + 1) ||
-		solve(x - 1, y) ||	solve(x, y - 1)){
+		solve(x - 1, y) || solve(x, y - 1)){
 		return true;
 	    }
 	    //replace the @ with a .
@@ -125,18 +125,31 @@ public class Maze{
     }
 
     public boolean solveBFS(boolean animate){
+	if(animate){
+	    System.out.println(this);
+	    wait(20);
+	}
+	
+	    
     }
 
     public boolean solveDFS(boolean animate){
+	if(animate){
+	    System.out.println(this);
+	    wait(20);
+	}
+	for(int i = 
     }
 
     public boolean solveBFS(){
-	return solveBFS(false);
+	return solveBFS(false);	
     }
 
     public boolean solveDFS(){
 	return solveDFS(false);
     }
-
+    
+    public int[] solutionCoordinates(){
+    }
 }
 
