@@ -133,12 +133,10 @@ public class Maze{
 	int currx = curr.getX();
 	int curry = curr.getY();
 
-	if(! (isOutOfBounds(currx, curry) || isBadSpace(currx, curry)){
-		if(maze[x][y] == 'E'){
-		}
+	if(! (isOutOfBounds(currx, curry) || isBadSpace(currx, curry))){
+	    if(maze[x][y] == 'E'){
 	    }
-	
-	    
+	}	    
     }
 
     public boolean solveDFS(boolean animate){
@@ -153,17 +151,45 @@ public class Maze{
 	if(! (isOutOfBounds(currx, curry) || isBadSpace(currx, curry))){
 	    if(maze[x][y] == 'E'){
 	    }
-	}	
+	}
+    }
 	    
+    public boolean solve(boolean animate, int mode){
 
-	public boolean solveBFS(){
-	    return solveBFS(false);	
-	}
+	Frontier rest = new Frontier(mode);
+	Coordinate start = new Coordinate(startx, starty);
 
-	public boolean solveDFS(){
-	    return solveDFS(false);
+	rest.add(start);
+
+	boolean solved = false;
+	while(!solved && rest.hasNext()){
+	    if(animate && !solved){
+		System.out.println(toString(true));
+	    }
+	    
+	    Coordinate next = rest.remove();
+	    if(maze[next.getX()][next.getY()] == 'E'){
+		solved = true;
+		addCoordinatesToSolutionArray(next);
+
+		maze[next.getX()][next.getY()] = 'x';
+		for(Coordinate p : getNeighbors(next)){
+		    rest.add(p);
+		}
+	    }
 	}
+    }
+	    
     
+    public boolean solveBFS(){
+	return solveBFS(false, 2);	
+    }
+
+    public boolean solveDFS(){
+	return solveDFS(false, 1);
+    }    
+
+	
     public int[] solutionCoordinates(){
     }
     
@@ -175,16 +201,20 @@ public class Maze{
 	return (maze[x][y] == '#' || maze[x][y] == '*');
     }
 
-    public void testPoss(){
-	maze[x][y] = '*';
+    public Coordinate[] getNeighbors(Coordinate n){
+	int x = n.getX();
+	int y = n.getY();
+	Frontier neighbors = new Frontier(1);
 	Coordinate poss1 = new Coordinate(x + 1, y);
 	Coordinate poss2 = new Coordinate(x - 1, y);
 	Coordinate poss3 = new Coordinate(x, y + 1);
 	Coordinate poss4 = new Coordinate(x, y + 2);
-	front.add(poss1);
-	front.add(poss2);
-	front.add(poss3);
-	front.add(poss4);
+	neighbors.add(poss1);
+	neighbors.add(poss2);
+	neighbors.add(poss3);
+	neighbors.add(poss4);
+
+	return neighbors;
     }
     
 }

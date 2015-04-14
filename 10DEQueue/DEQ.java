@@ -114,23 +114,4 @@ class DEQ<T> implements Iterable<T> {
 	checkInvariants();
 	return prevTail.item;
     }
-
-    
-    //new methods for a star
-    public void add(T item, int priority){
-	if(isEmpty()){
-	    throw new java.util.NoSuchElementException();
-	}
-	
-	size++;
-    }
-
-    public T removeSmallest(){
-	return null;
-    }
-
-    public T removeLargest(){
-	return null;
-    }
-	
 }
