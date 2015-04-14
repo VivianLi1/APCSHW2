@@ -1,21 +1,24 @@
 public class Frontier{
 
-    DEQ deq = new DEQ();
+    DEQ<Coordinate> deq;
 
     public Frontier(){
+	deq = new DEQ<Coordinate>();
     }
 
-    public void add(Coordinate c){
+    public void addFirst(Coordinate c){
 	deq.addFirst(c);
     }
 
-    public void remove(){
-	deq.removeLast();
-    }
-    /*
-    public Coordinate get(){
-	return deq.getL
+    public void addLast(Coordinate c){
+	deq.addLast(c);
     }
 
-    */
+    public Coordinate removeFirst(){
+	deq.removeFirst();
+    }
+
+    public Coordinate removeLast(){
+	deq.removeLast();
+    }
 }

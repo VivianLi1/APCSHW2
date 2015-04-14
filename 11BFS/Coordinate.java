@@ -1,6 +1,7 @@
 public class Coordinate{
 
     private int r, c;
+    private Coordinate last;
 
     public Coordinate(int r, int c){
 	setr(r);
@@ -22,4 +23,13 @@ public class Coordinate{
     public int getc(){
 	return c;
     }
+
+    public void setLast(Coordinate last_){
+	last = last_;
+    }
+
+    public Coordinate getLast(){
+	return last;
+    }
+	
 }

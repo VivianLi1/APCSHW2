@@ -125,31 +125,67 @@ public class Maze{
     }
 
     public boolean solveBFS(boolean animate){
-	if(animate){
-	    System.out.println(this);
-	    wait(20);
-	}
+	Frontier front = new Frontier();
+	Coordinate start = new Coordinate(startx, starty);
+	front.addLast(start);
+
+	Coordinate curr = front.removeFirst();
+	int currx = curr.getX();
+	int curry = curr.getY();
+
+	if(! (isOutOfBounds(currx, curry) || isBadSpace(currx, curry)){
+		if(maze[x][y] == 'E'){
+		}
+	    }
 	
 	    
     }
 
     public boolean solveDFS(boolean animate){
-	if(animate){
-	    System.out.println(this);
-	    wait(20);
+	Frontier front = new Frontier();
+	Coordinate start = new Coordinate(startx, starty);
+	front.addFirst(start);
+
+	Coordinate curr = front.removeLast();
+	int currx = curr.getX();
+	int curry = curr.getY();
+
+	if(! (isOutOfBounds(currx, curry) || isBadSpace(currx, curry))){
+	    if(maze[x][y] == 'E'){
+	    }
+	}	
+	    
+
+	public boolean solveBFS(){
+	    return solveBFS(false);	
 	}
-	for(int i = 
-    }
 
-    public boolean solveBFS(){
-	return solveBFS(false);	
-    }
-
-    public boolean solveDFS(){
-	return solveDFS(false);
-    }
+	public boolean solveDFS(){
+	    return solveDFS(false);
+	}
     
     public int[] solutionCoordinates(){
     }
+    
+    public boolean isOutOfBounds(int x, int y){
+	return (x < 0 || y < 0 || x >= maxx || y >= maxy);
+    }
+
+    public boolean isBadSpace(int x, int y){
+	return (maze[x][y] == '#' || maze[x][y] == '*');
+    }
+
+    public void testPoss(){
+	maze[x][y] = '*';
+	Coordinate poss1 = new Coordinate(x + 1, y);
+	Coordinate poss2 = new Coordinate(x - 1, y);
+	Coordinate poss3 = new Coordinate(x, y + 1);
+	Coordinate poss4 = new Coordinate(x, y + 2);
+	front.add(poss1);
+	front.add(poss2);
+	front.add(poss3);
+	front.add(poss4);
+    }
+    
 }
 
