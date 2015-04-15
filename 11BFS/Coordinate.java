@@ -1,27 +1,27 @@
 public class Coordinate{
 
-    private int r, c;
+    private int x, y;
     private Coordinate last;
 
-    public Coordinate(int r, int c){
-	setr(r);
-	setc(c);
+    public Coordinate(int x, int y){
+	setX(x);
+	setY(y);
     }
 
-    public void setr(int rr){
-	r = rr;
+    public void setX(int xx){
+	x = xx;
     }
 
-    public void setc(int cc){
-	c = cc;
+    public void setY(int yy){
+	y = yy;
     }
 
-    public int getr(){
-	return r;
+    public int getX(){
+	return x;
     }
 
-    public int getc(){
-	return c;
+    public int getY(){
+	return y;
     }
 
     public void setLast(Coordinate last_){

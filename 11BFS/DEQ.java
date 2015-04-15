@@ -1,3 +1,7 @@
+// Most of this isn't mine.
+// MyDeque is a buggy mess so using another deque as placeholder for now.
+
+
 import java.util.*;
 
 class DEQ<T> implements Iterable<T> {
@@ -37,6 +41,7 @@ class DEQ<T> implements Iterable<T> {
 
     private Node<T> head, tail;
     private int size;
+    private int[] priorCount = new int[15];
 
     public Iterator<T> iterator() {
 	return new DEQIterator();
@@ -115,22 +120,27 @@ class DEQ<T> implements Iterable<T> {
 	return prevTail.item;
     }
 
-    
-    //new methods for a star
+    /*
+    //new methods for priority queue
     public void add(T item, int priority){
-	if(isEmpty()){
-	    throw new java.util.NoSuchElementException();
-	}
-	
+	addLast(item);
+        tail++;
+	priorBox[tail] = priority;	
 	size++;
     }
 
     public T removeSmallest(){
-	return null;
-    }
+	if(isEmpty()){
+	    throw new NoSuchElementException();
+	}
 
-    public T removeLargest(){
-	return null;
-    }
+	int ind;
+	
+	//idk
+	for(int i = 0; i < size; i++){
+	    if(
+	
+   }
+	    */
 	
 }

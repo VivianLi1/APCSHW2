@@ -125,6 +125,7 @@ public class Maze{
     }
 
     public boolean solveBFS(boolean animate){
+	/*
 	Frontier front = new Frontier();
 	Coordinate start = new Coordinate(startx, starty);
 	front.addLast(start);
@@ -136,10 +137,13 @@ public class Maze{
 	if(! (isOutOfBounds(currx, curry) || isBadSpace(currx, curry))){
 	    if(maze[x][y] == 'E'){
 	    }
-	}	    
+	}
+	*/
+	return solve(false, 2);
     }
 
     public boolean solveDFS(boolean animate){
+	/*
 	Frontier front = new Frontier();
 	Coordinate start = new Coordinate(startx, starty);
 	front.addFirst(start);
@@ -149,9 +153,11 @@ public class Maze{
 	int curry = curr.getY();
 
 	if(! (isOutOfBounds(currx, curry) || isBadSpace(currx, curry))){
-	    if(maze[x][y] == 'E'){
+	    if(maze[currx][curry] == 'E'){
 	    }
 	}
+	*/
+	return solve(false, 1);
     }
 	    
     public boolean solve(boolean animate, int mode){
@@ -170,7 +176,7 @@ public class Maze{
 	    Coordinate next = rest.remove();
 	    if(maze[next.getX()][next.getY()] == 'E'){
 		solved = true;
-		addCoordinatesToSolutionArray(next);
+		//addCoordinatesToSolutionArray(next);
 
 		maze[next.getX()][next.getY()] = 'x';
 		for(Coordinate p : getNeighbors(next)){
@@ -178,21 +184,24 @@ public class Maze{
 		}
 	    }
 	}
+	return solved;
     }
 	    
-    
+    /*
     public boolean solveBFS(){
 	return solveBFS(false, 2);	
     }
 
     public boolean solveDFS(){
 	return solveDFS(false, 1);
-    }    
+    }
+    */    
 
 	
     public int[] solutionCoordinates(){
+	return null;
     }
-    
+   
     public boolean isOutOfBounds(int x, int y){
 	return (x < 0 || y < 0 || x >= maxx || y >= maxy);
     }
@@ -204,15 +213,15 @@ public class Maze{
     public Coordinate[] getNeighbors(Coordinate n){
 	int x = n.getX();
 	int y = n.getY();
-	Frontier neighbors = new Frontier(1);
+	Coordinate[] neighbors = new Coordinate[4];
 	Coordinate poss1 = new Coordinate(x + 1, y);
 	Coordinate poss2 = new Coordinate(x - 1, y);
 	Coordinate poss3 = new Coordinate(x, y + 1);
 	Coordinate poss4 = new Coordinate(x, y + 2);
-	neighbors.add(poss1);
-	neighbors.add(poss2);
-	neighbors.add(poss3);
-	neighbors.add(poss4);
+	neighbors[1] = poss1;
+	neighbors[2] = poss2;
+	neighbors[3] = poss3;
+	neighbors[4] = poss4;
 
 	return neighbors;
     }
