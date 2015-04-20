@@ -10,6 +10,8 @@ public class Maze{
     private String hide =  "\033[?25l";
     private String show =  "\033[?25h";
 
+    public int[] solutionCoordinates;
+
     public Maze(String filename){
 	startx = -1;
 	starty = -1;
@@ -139,7 +141,7 @@ public class Maze{
 	    }
 	}
 	*/
-	return solve(false, 2);
+	return solve(animate, 2);
     }
 
     public boolean solveDFS(boolean animate){
@@ -157,7 +159,15 @@ public class Maze{
 	    }
 	}
 	*/
-	return solve(false, 1);
+	return solve(animate, 1);
+    }
+
+    public boolean solveBest(boolean animate){
+	return solve(animate, 1);
+    }
+
+    public boolean solveAStar(boolean animate){
+	return solve(animate, 1);
     }
 	    
     public boolean solve(boolean animate, int mode){
@@ -187,19 +197,26 @@ public class Maze{
 	return solved;
     }
 	    
-    /*
+    
     public boolean solveBFS(){
-	return solveBFS(false, 2);	
+	return solveBFS(false);	
     }
 
     public boolean solveDFS(){
-	return solveDFS(false, 1);
+	return solveDFS(false);
     }
-    */    
 
-	
-    public int[] solutionCoordinates(){
-	return null;
+    public boolean solveBest(){
+	return solveBest(false);
+    }
+
+    public boolean solveAStar(){
+	return solveAStar(false);
+    }
+
+    public void addCoordinatesToSolutionArray(Coordinate n){
+	while(n != null){
+	}
     }
    
     public boolean isOutOfBounds(int x, int y){
@@ -210,21 +227,28 @@ public class Maze{
 	return (maze[x][y] == '#' || maze[x][y] == '*');
     }
 
-    public Coordinate[] getNeighbors(Coordinate n){
+    public ArrayList<Coordinate> getNeighbors(Coordinate n){
 	int x = n.getX();
 	int y = n.getY();
-	Coordinate[] neighbors = new Coordinate[4];
+	ArrayList<Coordinate> neighbors = new ArrayList<Coordinate>();
+	ArrayList<Coordinate> possibilities = new ArrayList<Coordinate>();
 	Coordinate poss1 = new Coordinate(x + 1, y);
 	Coordinate poss2 = new Coordinate(x - 1, y);
 	Coordinate poss3 = new Coordinate(x, y + 1);
-	Coordinate poss4 = new Coordinate(x, y + 2);
-	neighbors[1] = poss1;
-	neighbors[2] = poss2;
-	neighbors[3] = poss3;
-	neighbors[4] = poss4;
+	Coordinate poss4 = new Coordinate(x, y - 1);
+	possibilities.add(poss1);
+	possibilities.add(poss2);
+	possibilities.add(poss3);
+	possibilities.add(poss4);
 
+	for(Coordinate p: possibilities){
+	    if(p.getX() >= 0 && p.getX() < maxx && p.getY() >= 0 && p.getY() < maxy){
+		if(maze[p.getX()][p.getY()] == ' ' || maze[p.getX()][p.getY()] == 'E'){
+		    neighbors.add(p);
+		}
+	    }
+	}
 	return neighbors;
-    }
-    
+    }    
 }
 

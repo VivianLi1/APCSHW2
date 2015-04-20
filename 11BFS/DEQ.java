@@ -120,7 +120,7 @@ class DEQ<T> implements Iterable<T> {
 	return prevTail.item;
     }
 
-    /*
+    
     //new methods for priority queue
     public void add(T item, int priority){
 	addLast(item);
@@ -133,14 +133,13 @@ class DEQ<T> implements Iterable<T> {
 	if(isEmpty()){
 	    throw new NoSuchElementException();
 	}
-
-	int ind;
-	
-	//idk
-	for(int i = 0; i < size; i++){
-	    if(
-	
+	Node<T> mark = head;
+	int i=0;
+	while(i != size){
+	    if(mark.compareTo(right) > 0){
+	        mark = right;
+	    }
+	    head = head.right;
+	}	
    }
-	    */
-	
 }
