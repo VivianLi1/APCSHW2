@@ -14,6 +14,10 @@ public class MyDeque<T>{
 	tail = head + (size - 1);
 	priorCount = new int[15];
     }
+
+    public int size(){
+	return size;
+    }
     
     public void addFirst(T value){
 	resize();	

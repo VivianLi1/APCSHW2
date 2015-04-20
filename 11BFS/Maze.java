@@ -127,47 +127,19 @@ public class Maze{
     }
 
     public boolean solveBFS(boolean animate){
-	/*
-	Frontier front = new Frontier();
-	Coordinate start = new Coordinate(startx, starty);
-	front.addLast(start);
-
-	Coordinate curr = front.removeFirst();
-	int currx = curr.getX();
-	int curry = curr.getY();
-
-	if(! (isOutOfBounds(currx, curry) || isBadSpace(currx, curry))){
-	    if(maze[x][y] == 'E'){
-	    }
-	}
-	*/
 	return solve(animate, 2);
     }
 
     public boolean solveDFS(boolean animate){
-	/*
-	Frontier front = new Frontier();
-	Coordinate start = new Coordinate(startx, starty);
-	front.addFirst(start);
-
-	Coordinate curr = front.removeLast();
-	int currx = curr.getX();
-	int curry = curr.getY();
-
-	if(! (isOutOfBounds(currx, curry) || isBadSpace(currx, curry))){
-	    if(maze[currx][curry] == 'E'){
-	    }
-	}
-	*/
 	return solve(animate, 1);
     }
 
     public boolean solveBest(boolean animate){
-	return solve(animate, 1);
+	return solve(animate, 3);
     }
 
     public boolean solveAStar(boolean animate){
-	return solve(animate, 1);
+	return solve(animate, 4);
     }
 	    
     public boolean solve(boolean animate, int mode){
