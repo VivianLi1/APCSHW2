@@ -177,7 +177,7 @@ public class Maze{
     public boolean solveDFS(){
 	return solveDFS(false);
     }
-
+ 
     public boolean solveBest(){
 	return solveBest(false);
     }
@@ -187,7 +187,10 @@ public class Maze{
     }
 
     public void addCoordinatesToSolutionArray(Coordinate n){
+	int nx = n.getX();
+	int ny = n.getY();
 	while(n != null){
+	    
 	}
     }
    
@@ -214,13 +217,12 @@ public class Maze{
 	possibilities.add(poss4);
 
 	for(Coordinate p: possibilities){
-	    if(p.getX() >= 0 && p.getX() < maxx && p.getY() >= 0 && p.getY() < maxy){
-		if(maze[p.getX()][p.getY()] == ' ' || maze[p.getX()][p.getY()] == 'E'){
+	    if(!isOutOfBounds(p.getX(), p.getY())){
+		if(!isBadSpace(p.getX(), p.getY())){
 		    neighbors.add(p);
 		}
 	    }
-	}
-	return neighbors;
-    }    
-}
+	    return neighbors; 
+	}    
+    }
 
