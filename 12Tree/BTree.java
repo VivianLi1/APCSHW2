@@ -8,15 +8,27 @@ public class BTree<E>{
     public static final int POST_ORDER = 2;
 
     private TreeNode<E> root;
+    Random rand = new Random(0921);
 
     public BTree(){
 	root = null;
     }
 
     public void add(E data){
+	TreeNode<E> added = new TreeNode<E>(data);
+	add(root, added);
     }
 
     public void add(TreeNode<E> curr, TreeNode<E> bn){
+	if(curr.getLeft() == null && curr.getRight() == null){
+	    int pos = rand.nextInt(2);
+	    if(pos == 0)
+		curr.setLeft(bn);
+	    if(pos == 1)
+		curr.setRight(bn);
+	}
+
+	    
     }
 
     public void traverse(int mode){
