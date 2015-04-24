@@ -32,7 +32,10 @@ public class TreeNode<E>{
     public TreeNode<E> getLeft(){
 	return left;
     }
-
+    /*
+    public boolean hasRight(){
+return 
+    */
     public E getData(){
 	return (E)data;
     }
