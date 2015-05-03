@@ -43,7 +43,7 @@ public class BSTree <T extends Comparable<? super T>> {
 	    curr.setLeft(add(curr.getLeft(), t));
 	    return curr;
 	}else{
-	    curr.setLeft(add(curr.getRight(), t));
+	    curr.setRight(add(curr.getRight(), t));
 	    return curr;
 	}
     }
@@ -221,11 +221,12 @@ public class BSTree <T extends Comparable<? super T>> {
     }
 
     public static void main( String[] args ){
+ 
 	BSTree<Integer> test = new BSTree<Integer>();
-	
-	for(int i = 0; i < 8; i++){
-	    test.add(i);
-	}
+	Random rand = new Random();
+	test.add(14);
+	test.add(15);
+	test.add(10);
 	
 	System.out.println(test);
 	  
