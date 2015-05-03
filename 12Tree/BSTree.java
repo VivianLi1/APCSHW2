@@ -4,11 +4,11 @@ import java.util.*;
 public class BSTree <T extends Comparable<? super T>> {
 
     private BSTreeNode<T> root;
-    private int height;
+    //private int height;
 
     public BSTree() {
 	root = null;
-	height = 0;
+	//height = 0;
     }
 
     public boolean isEmpty() {
@@ -26,7 +26,6 @@ public class BSTree <T extends Comparable<? super T>> {
       ====================*/
     public void add( T c ) {
 	root = add( root, new BSTreeNode<T>(c) );
-	height++;
     }
 
     /*======== public BSTreeNode<T> add() ==========
@@ -57,7 +56,6 @@ public class BSTree <T extends Comparable<? super T>> {
       ====================*/
     public void remove( T c ) {
 	root = remove( root, c );
-	height--;
     }
 
     /*======== public BSTreeNode<T> remove() ==========
@@ -69,7 +67,17 @@ public class BSTree <T extends Comparable<? super T>> {
       curr, if it exists.
       ====================*/
     private BSTreeNode<T> remove( BSTreeNode<T> curr, T c ) {
-	
+	/*
+	if(isLeaf(curr)){
+	    if(curr.getData() == c){
+		return null;
+	    }
+	}
+	else if(curr.getLeft() == null || curr.getRight == null){
+	    if(curr
+	}
+	*/
+	return null;
     }
 
 
@@ -211,14 +219,16 @@ public class BSTree <T extends Comparable<? super T>> {
 				
 	return result;
     }
+
     public static void main( String[] args ){
-	BSTree test = new BSTree();
-	/*
-	  for(int i = 0; i < 8; i++){
-	  test.add(i);
-	  }
-	  //System.out.println(
-	  */
+	BSTree<Integer> test = new BSTree<Integer>();
+	
+	for(int i = 0; i < 8; i++){
+	    test.add(i);
+	}
+	
+	System.out.println(test);
+	  
     }
 
 }
