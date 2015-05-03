@@ -1,12 +1,14 @@
 import java.io.*;
 import java.util.*;
 
-public class BSTree <T extends Comparable> {
+public class BSTree <T extends Comparable<? super T>> {
 
     private BSTreeNode<T> root;
+    private int height;
 
     public BSTree() {
 	root = null;
+	height = 0;
     }
 
     public boolean isEmpty() {
@@ -24,6 +26,7 @@ public class BSTree <T extends Comparable> {
       ====================*/
     public void add( T c ) {
 	root = add( root, new BSTreeNode<T>(c) );
+	height++;
     }
 
     /*======== public BSTreeNode<T> add() ==========
@@ -34,16 +37,13 @@ public class BSTree <T extends Comparable> {
       Add t to the correct place in the tree rooted at curr.
       ====================*/
     private BSTreeNode<T> add(BSTreeNode<T> curr, BSTreeNode<T> t) {
-	T currData = curr.getData();
-	T tData = t.getData();
 	if(curr == null){
 	    return t;
 	}
-	else if(curr.compareTo(t) > 0){
+	else if(curr.getData().compareTo(t.getData()) > 0){
 	    curr.setLeft(add(curr.getLeft(), t));
 	    return curr;
-	}
-	else if(curr.compareTo(t) < 0){
+	}else{
 	    curr.setLeft(add(curr.getRight(), t));
 	    return curr;
 	}
@@ -57,6 +57,7 @@ public class BSTree <T extends Comparable> {
       ====================*/
     public void remove( T c ) {
 	root = remove( root, c );
+	height--;
     }
 
     /*======== public BSTreeNode<T> remove() ==========
@@ -68,7 +69,7 @@ public class BSTree <T extends Comparable> {
       curr, if it exists.
       ====================*/
     private BSTreeNode<T> remove( BSTreeNode<T> curr, T c ) {
-	return null;
+	
     }
 
 

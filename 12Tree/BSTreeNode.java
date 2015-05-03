@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class BSTreeNode<T extends Comparable> {
+public class BSTreeNode<T extends Comparable<? super T>> {
 
     private T data;
     private BSTreeNode<T> left;
