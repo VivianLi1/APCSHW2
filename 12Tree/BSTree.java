@@ -4,11 +4,9 @@ import java.util.*;
 public class BSTree <T extends Comparable<? super T>> {
 
     private BSTreeNode<T> root;
-    //private int height;
 
     public BSTree() {
 	root = null;
-	//height = 0;
     }
 
     public boolean isEmpty() {
@@ -67,17 +65,30 @@ public class BSTree <T extends Comparable<? super T>> {
       curr, if it exists.
       ====================*/
     private BSTreeNode<T> remove( BSTreeNode<T> curr, T c ) {
-	/*
-	if(isLeaf(curr)){
-	    if(curr.getData() == c){
-		return null;
+	if(curr == null){
+	    return curr;
+	}
+	else if(isLeaf(curr) && curr.getData() == c){
+	    return null;   
+	}
+	else if(curr.getData().compareTo(c) > 0){
+	    curr.setLeft(remove(curr.getLeft(), c));
+	    return curr;
+	}
+	else if(curr.getData().compareTo(c) < 0){
+	    curr.setRight(remove(curr.getRight(), c));
+	    return curr;
+	} else {
+	    /*
+	    BSTreeNode<T> temp = curr.getRight();
+	    while(temp.getLeft() != null){
+		temp = temp.getLeft();
 	    }
+	    curr.setData(temp.getData());
+	    curr.setRight(remove(curr.getRight(), curr.getData()));
+	    */ return curr;
+	   
 	}
-	else if(curr.getLeft() == null || curr.getRight == null){
-	    if(curr
-	}
-	*/
-	return null;
     }
 
 
@@ -223,11 +234,14 @@ public class BSTree <T extends Comparable<? super T>> {
     public static void main( String[] args ){
  
 	BSTree<Integer> test = new BSTree<Integer>();
-	Random rand = new Random();
-	test.add(14);
-	test.add(15);
 	test.add(10);
-	
+	test.add(41);
+	test.add(13);
+	test.add(11);
+	test.add(0);
+	test.add(88);
+	System.out.println(test);
+	test.remove(13);
 	System.out.println(test);
 	  
     }
