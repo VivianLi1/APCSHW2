@@ -8,10 +8,10 @@ public class BTree<E>{
     public static final int POST_ORDER = 2;
 
     private TreeNode<E> root;
-    Random rand = new Random(0921);
+    Random rand = new Random(123);
 
     public BTree(){
-	root = null;
+	root = new TreeNode<E>(null);
     }
 
     public void add(E data){
@@ -20,14 +20,24 @@ public class BTree<E>{
     }
 
     public void add(TreeNode<E> curr, TreeNode<E> bn){
+	//int pos = rand.nextInt(2);
 	if(curr.getLeft() == null && curr.getRight() == null){
-	    int pos = rand.nextInt(2);
-	    if(pos == 0)
+	    if(rand.nextInt(2) == 0)
 		curr.setLeft(bn);
-	    if(pos == 1)
+	    else
 		curr.setRight(bn);
 	}
-
+	else if(!(curr.getRight() == null) && curr.getLeft() == null){
+	    curr.setLeft(bn);
+	}
+	else if(!(curr.getLeft() == null) && curr.getRight() == null){
+	    curr.setRight(bn);
+	}else{
+	    if(rand.nextInt(2) == 0)
+		add(curr.getLeft(), bn);
+	    else
+		add(curr.getRight(), bn);
+	}
 	    
     }
 
@@ -55,7 +65,7 @@ public class BTree<E>{
     }
     
     public int getHeight(TreeNode<E> curr){
-	return -1;
+	return (curr.
     }
 
     private String getLevel(TreeNode<E> curr, int level, int currLevel){
