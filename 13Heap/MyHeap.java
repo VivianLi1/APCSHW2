@@ -24,7 +24,15 @@ public class MyHeap{
     }
 
     public int remove(){
-	return 0;
+	int t = arr[1];
+        arr[1] = 0;
+	arr[0]--;
+	if(isMax){
+	    pushUp();
+	}else{
+	    pushDown();
+	}
+	return t;
     }
 
     public void add(int num){
@@ -109,16 +117,6 @@ public class MyHeap{
     public int peek(){
 	return arr[1];
     }
-    
-    /*
-      private int emptyIndex(){
-      int i = 1;
-      while(arr[i] != null){
-      i++;
-      }
-      return i;
-      }
-    */
 	
     public static void main(String[] args){
 	MyHeap testMax = new MyHeap();
