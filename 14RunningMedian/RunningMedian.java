@@ -2,11 +2,15 @@ import java.util.*;
 
 public class RunningMedian{
 
-    PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>();
-    PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
+    MyHeap maxHeap = new MyHeap();
+    MyHeap minHeap = new MyHeap(false);
 
     private double  median;
 
+    public String name(){
+	return "vivian.li";
+    }
+	    
     public RunningMedian(){
 	median = 0;
     }
@@ -18,7 +22,7 @@ public class RunningMedian{
 	findHeap(value).add(value);
     }
 
-    private PriorityQueue<Integer> findHeap(int value){
+    private MyHeap findHeap(int value){
 	if(value > median){
 	    return minHeap;
 	}else{
@@ -27,11 +31,20 @@ public class RunningMedian{
     }
 
     private void findNewMedian(){
-	int meanInd = (maxHeap.size() + minHeap.size() + 1) / 2;
+	median = maxHeap.peek() + minHeap.peek() / 2;	    
     }
 
     private double getMedian(){
-	return median;	
+	return median;
+    }
+
+    public void add(int value){
+	if(value > median){
+	    minHeap.add(value);
+	}else{
+	    maxHeap.add(value);
+	}
+	findNewMedian();
     }
 
     public static void main(String[] args){
