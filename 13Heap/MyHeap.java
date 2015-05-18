@@ -20,7 +20,7 @@ public class MyHeap{
     }
 
     public String toString(){
-	return arr.toString();
+	return Arrays.toString(arr);
     }
 
     public int remove(){
