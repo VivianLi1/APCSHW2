@@ -10,7 +10,7 @@ public class MyHeap{
     }
 
     public MyHeap(boolean isMax2){
-	arr = new int[2];
+	arr = new int[10];
 	arr[0] = 0;
 	isMax = isMax2;
     }
@@ -31,60 +31,79 @@ public class MyHeap{
 	resize();
 	arr[0] = arr[0] + 1;
 	arr[arr[0]] = num;
-        if(isMax){
-	    pushUp();
-	}else{
-	    pushDown();
+	if(arr[0] > 1){
+	    if(isMax){
+		pushUp();
+	    }else{
+		pushDown();
+	    }
 	}
     }
 
     public void pushUp(){
-	int lastInd = arr[0];
-	int last = arr[lastInd];
-	int parentLast = arr[getParentInd(lastInd)];
-        while(parentLast > last){
-	    swap(lastInd);
-	    lastInd = getParentInd(lastInd);
-	    last = arr[lastInd];
-	    parentLast = arr[getParentInd(lastInd)];
+	int ind = arr[0];
+        while(getParentInd(ind) > 1 && arr[ind] > getParent(ind)){
+	    swap(ind, getParentInd(ind));
+	    ind = getParentInd(ind);
 	}
     }
 
     public void pushDown(){
-    }
-
-    public void resize(){
-	if(arr[0] >= arr.length - 1){
-	    arr = Arrays.copyOf(arr, arr[0] * 2);
+	int ind = 1;
+	while(getLeftInd(ind) <= arr[0]){
+	    int small = getSmall(getLeft(ind), getRight(ind));
+	    if(arr[ind] > small){
+		swap(ind, small);
+	    }
+	    ind = small;
 	}
     }
-    /*
-      public boolean compare(int i, int j){
-      if(isMax){
-      return arr[i] > arr[j];
-      }
-      else{
-      return arr[i] < arr[j];
-      }
-      }
-    */
-    public void swap(int ind){
-	int parent = getParentInd(ind);
+
+    private int getSmall(int one, int two){
+	if(one < two){
+	    return one;
+	}else{
+	    return two;
+	}
+    }
+    
+    public void resize(){
+	if(arr[0] >= arr.length - 1){
+	    arr = Arrays.copyOf(arr, arr.length * 2);
+	}
+    }
+ 
+    public void swap(int ind, int ind2){
 	int t = arr[ind];
-	arr[ind] = arr[parent];
-	arr[parent] = t;
+	arr[ind] = arr[ind2];
+	arr[ind2] = t;
     }
 
     public int getLeftInd(int ind){
 	return ind * 2;
     }
 
+    public int getLeft(int ind){
+        int l = getLeftInd(ind);
+	return arr[l];
+    }
+
     public int getRightInd(int ind){
 	return ind * 2 + 1;
     }
 
+    public int getRight(int ind){
+	int r = getRightInd(ind);
+	return arr[r];
+    }
+
     public int getParentInd(int ind){
 	return ind / 2;
+    }
+
+    public int getParent(int ind){
+	int i = getParentInd(ind);
+	return arr[i];
     }
     
     public int peek(){
@@ -106,6 +125,9 @@ public class MyHeap{
 	MyHeap testMin = new MyHeap(false);
 
 	testMax.add(10);
+	testMax.add(99);
+	//testMax.add(0);
+	//testMax.add(11);
 	System.out.println(testMax);
     }
 }
